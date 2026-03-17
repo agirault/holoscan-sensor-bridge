@@ -33,6 +33,9 @@ add_library(hololink_core STATIC
 add_library(hololink::core ALIAS hololink_core)
 
 set_property(TARGET hololink_core PROPERTY POSITION_INDEPENDENT_CODE ON)
+# Disable unity build: hololink.cpp and traditional_spi.cpp define SPI
+# constants with same names but different values (different HW register layouts).
+set_property(TARGET hololink_core PROPERTY UNITY_BUILD OFF)
 
 target_link_libraries(hololink_core
   PUBLIC
